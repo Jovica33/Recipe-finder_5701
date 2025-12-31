@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm, appetizing color palette */
+    --background: 40 33% 98%;
+    --foreground: 20 25% 15%;
+
+    --card: 40 30% 97%;
+    --card-foreground: 20 25% 15%;
+
+    --popover: 40 30% 97%;
+    --popover-foreground: 20 25% 15%;
+
+    /* Rich terracotta/burnt orange primary */
+    --primary: 18 76% 48%;
+    --primary-foreground: 40 33% 98%;
+
+    /* Warm cream secondary */
+    --secondary: 40 25% 92%;
+    --secondary-foreground: 20 25% 20%;
+
+    --muted: 40 20% 94%;
+    --muted-foreground: 20 15% 45%;
+
+    /* Deep forest green accent */
+    --accent: 150 35% 30%;
+    --accent-foreground: 40 33% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 33% 98%;
+
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 18 76% 48%;
+
+    --radius: 0.75rem;
+
+    /* Custom recipe-specific tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(18 76% 48% / 0.9), hsl(30 70% 45% / 0.85));
+    --card-hover-shadow: 0 20px 40px -12px hsl(20 25% 15% / 0.15);
+    --glass-bg: hsl(40 30% 97% / 0.8);
+
+    --sidebar-background: 40 25% 96%;
+    --sidebar-foreground: 20 25% 20%;
+    --sidebar-primary: 18 76% 48%;
+    --sidebar-primary-foreground: 40 33% 98%;
+    --sidebar-accent: 40 20% 92%;
+    --sidebar-accent-foreground: 20 25% 20%;
+    --sidebar-border: 30 20% 88%;
+    --sidebar-ring: 18 76% 48%;
+  }
+
+  .dark {
+    --background: 20 20% 8%;
+    --foreground: 40 25% 95%;
+
+    --card: 20 18% 12%;
+    --card-foreground: 40 25% 95%;
+
+    --popover: 20 18% 12%;
+    --popover-foreground: 40 25% 95%;
+
+    --primary: 20 80% 55%;
+    --primary-foreground: 20 20% 8%;
+
+    --secondary: 20 15% 18%;
+    --secondary-foreground: 40 25% 90%;
+
+    --muted: 20 15% 20%;
+    --muted-foreground: 40 15% 60%;
+
+    --accent: 150 40% 45%;
+    --accent-foreground: 20 20% 8%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 40 33% 98%;
+
+    --border: 20 15% 20%;
+    --input: 20 15% 20%;
+    --ring: 20 80% 55%;
+
+    --sidebar-background: 20 18% 10%;
+    --sidebar-foreground: 40 25% 90%;
+    --sidebar-primary: 20 80% 55%;
+    --sidebar-primary-foreground: 20 20% 8%;
+    --sidebar-accent: 20 15% 16%;
+    --sidebar-accent-foreground: 40 25% 90%;
+    --sidebar-border: 20 15% 18%;
+    --sidebar-ring: 20 80% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-sans {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-hover-shadow);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+}
+
+@layer components {
+  .recipe-card {
+    @apply relative overflow-hidden rounded-xl bg-card border border-border card-hover;
+  }
+
+  .recipe-card-image {
+    @apply aspect-[4/3] w-full object-cover transition-transform duration-500;
+  }
+
+  .recipe-card:hover .recipe-card-image {
+    transform: scale(1.05);
+  }
+
+  .category-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium transition-colors;
+  }
+
+  .search-input {
+    @apply w-full px-4 py-3 rounded-xl bg-secondary border-none focus:ring-2 focus:ring-primary/30 transition-all;
+  }
+}
